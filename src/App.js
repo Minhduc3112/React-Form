@@ -1,23 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
 
+import './App.css';
+import Table from './Components/Table.js';
+import Form from './Components/Form.js';
+import { useState } from "react";
+import Data from './data.json'
 function App() {
+  const [data,setData] = useState(Data);
+  const[userEdit,setUserEdit] =useState({});
+  
+  const addValue =(id,name,age,address,phone)=>{
+   const newArr = [...data];
+   newArr.push({id:id,name:name,age:age,address:address,phone:phone});
+   setData(newArr);
+  }
+  // function FastEdit(id,name,age,address,phone){
+  //   setData(
+  //     data.map((item) => {
+  //       if (item.id === id) {
+  //         return {
+  //           ...item,
+  //           name:name,
+  //           age:age,
+  //           address:address,
+  //           phone:phone
+  //         };
+  //       } else return item;
+  //     })
+  //   );
+  // }
+  function Deleteuser(id){
+    const newUsers = data.filter((data) => data.id!== id);
+    setData(newUsers);
+  }
+  function UpdateUser(currentId, currentName, currentage, currentAddress, currentPhone) {
+    setData(
+      data.map((item) => {
+        if (item.id === currentId) {
+          return {
+            ...item,
+            name:currentName,
+            age:currentage,
+            address:currentAddress,
+            phone:currentPhone
+          };
+        } else return item;
+      })
+    );
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+    <div className="row">
+        <div className="col-6">
+        <Table User={data} EditUser={(data)=>setUserEdit(data)} deleteUserid={Deleteuser} fastEdit={UpdateUser} setUser={setData} />
+        </div>
+        <div className="col-6">
+        <Form AddUser={addValue} userEdit={userEdit} UpdateUser={UpdateUser} />
+        </div>
+      </div>
+    </div>
+      
     </div>
   );
 }

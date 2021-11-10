@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "name": "Minh duc",
+        "age": "11",
+        "address": "Da Nang",
+        "phone": "12341234"
+    },
+    {
+        "id": 2,
+        "name": "Minh duc",
+        "age": "12",
+        "address": "Dong Hoi",
+        "phone": "12341234"
+    },
+    {
+        "id": 3,
+        "name": "Minh duc",
+        "age": "13",
+        "address": "Quang Binh",
+        "phone": "12341234"
+    }
+]
